@@ -1,0 +1,150 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-booking{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Driver</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Book A Trip</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Book A trip</h3>
+                 <p class="lead">Booking Details</p>
+            </div><!-- end title -->
+
+
+            <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 ">
+
+
+                    <div class="blog-inner-box">
+
+                        <div class="side-blog-img">
+                            <img class="img-fluid" src="{{viewBuses.image.url}}" alt="" style="width: 600px">
+
+                        </div><hr>
+                        <div class="row our-team">
+                            <div class="col-xl-12 col-lg-12 col-12">
+                                <div class="inner-blog-detail details-page">
+                                    <h3>{{viewBuses.bus_name}}</h3>
+                                    <ul>
+                                        <li><i class="zmdi zmdi-account"></i>Capacity : {{viewBuses.capacity}}<span> Person(s)</span></li>
+
+                                    </ul><hr>
+                                    <p>Color: {{viewBuses.color}}</p>
+                                    <h3>Cost: GHC {{viewBuses.cost_per_day}} per day</h3>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                            <form class="our-team"  action="/booking/addtobuscart/{{viewBuses.id}}" method="post">
+                                {%csrf_token%}
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <H3 >Pick Up</H3>
+                                        <input class="form-control input" name="pickup" type="text" >
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <H3 >Security Deposit</H3>
+                                        <input class="form-control input" name="security_deposit" type="number" value="1" min="0" >
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                            <label>Start Date</label>
+                                            <input class="form-control" type="date" name="start_date"
+                                                   value="{{m.start_date.value}}" placeholder="Start Date" data-error="Please select Start Date">
+                                           <div class="help-block with-errors"></div>
+                                    </div>
+
+                                    <div class="col-md-6 mb-3">
+                                            <label>End Date</label>
+                                            <input class="form-control" type="date" name="end_date"
+                                                   value="{{m.end_date.value}}" placeholder="End Date" data-error="Please select End Date">
+                                           <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="submit-button text-center">
+                                            <button class="btn btn-light" id="submit" type="submit">Book</button>
+                                            <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </form>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

@@ -1,0 +1,195 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-update{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Booking Updates</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Update Booking</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Update</h3>
+                <p class="lead">Update Details</p><hr>
+
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+                    <div class="">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+
+                        <form class="our-team" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Vehicle Name </label>
+                                        <input type="text" class="form-control"  name="vehicle" placeholder="Vehicle Name" value="{{bookings.vehicle}}" required data-error="Vehicle Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Pick-Up Source </label>
+                                        <input type="text" class="form-control"  name="source" placeholder="Pick Up Source" value="{{bookings.source}}"  required data-error="Please enter Pickup Destination">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Destination</label>
+                                        <input type="text" class="form-control"  name="destination" placeholder="Destination" value="{{bookings.destination}}"  required data-error="Please enter Destination">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Distance in km</label>
+                                        <input type="text" class="form-control"  name="distance" placeholder="Distance" value="{{bookings.distance}}"  required data-error="Please enter Distance">
+                                        <div  class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Start Date & Time </label>
+                                        <input type="date" class="form-control"  name="start_date" placeholder="Start Date: yyyy-mm-dd" value="{{bookings.start_date}}" required data-error="Please Start Date">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                </div>
+
+                                 <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>End Date & Time </label>
+                                        <input type="date" class="form-control"  name="end_date" placeholder="End Date: yyyy-mm-dd" value="{{bookings.end_date}}" required data-error="Please End Date">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Booker</label>
+                                        <input type="text" class="form-control"  name="booker" placeholder="Booker's Name" value="{{bookings.booker}}"  required data-error="Please enter Booker's name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Booker Phone</label>
+                                        <input type="text" class="form-control"  name="booker_phone" placeholder="Booker's Phone" value="{{bookings.booker_phone}}"  required data-error="Please enter Booker's Phone">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Security Deposit</label>
+                                        <input type="text" class="form-control"  name="security_deposit" placeholder="Commitment Deposit" value="{{bookings.security_deposit}}"  required data-error="Please enter Deposit">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Total Cost</label>
+                                        <input type="text" class="form-control"  name="cost" placeholder="Total Cost" value="{{bookings.cost}}"  required data-error="Please enter Total Cost">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Total Cost</label>
+                                        <input type="text" class="form-control"  name="assigned_driver" placeholder="Assign Driver" value="{{bookings.assigned_driver}}"  required data-error="Please Assined Driver">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="submit-button text-center">
+                                        <button class="btn btn-light" id="submit" type="submit">Update</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

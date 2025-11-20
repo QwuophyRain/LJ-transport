@@ -1,0 +1,142 @@
+{% extends 'homebase.html' %}
+
+{% block title %}profile{% endblock %}
+
+
+
+
+{% block content %}
+{%load static%}
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Your Profile</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Profile</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Your Profile</h3>
+                 <p class="lead">Below is your profile detials.
+					<br>You can update your details here</p>
+            </div><!-- end title -->
+
+
+			{% if messages %}
+				{% for message in messages %}
+					<div class="alert alert-{{ message.tags}}" role="alert">
+						{{message}}
+					</div>
+				{% endfor %}
+			{% endif %}
+
+			<div class="row">
+				<div class="col-xl-12 col-lg-12 col-12">
+					<a href="/account/update" class="btn btn-light">Update Profile</a>
+					<a href="/account/password_update" class="btn btn-light">Change Password</a>
+					<a href="/account/update_profile" class="btn btn-light">Update Profile</a>
+					<a href="/my_reservations" class="btn btn-light">MY RESERVATIONS</a><hr>
+
+				</div>
+
+				<div class="col-xl-8 col-lg-8 col-12"> <!--  display message on form    -->
+
+                    <div class="cart-page-inner">
+						<div class="table ">
+							<table class="cart-table">
+
+
+									<tr>
+
+										<th class="text-left">Full name:</th>
+										<td class="text-left"> {{user.first_name}} {{user.last_name}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Email:</th>
+										  <td class="text-left"> {{user.email}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Phone: </th>
+										  <td class="text-left"> {{user.userprofile.phone}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">City: </th>
+										  <td class="text-left">{{user.userprofile.city}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Country: </th>
+										  <td class="text-left">{{user.userprofile.country}}</td>
+
+									</tr>
+								    <tr>
+										  <th class="text-left">Address: </th>
+										  <td class="text-left">{{user.userprofile.address|safe}}</td>
+									</tr>
+
+							</table>
+						</div>
+					</div>
+
+				</div>
+
+				<div class="col-xl-4 col-lg-4 col-md-4 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog">
+
+						<div class="blog-categories">
+							<img src="{{user.userprofile.image.url}}" style="height: 200px; width:200px; border-radius: 100%">
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

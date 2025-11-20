@@ -1,0 +1,134 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-login{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+
+{% block content %}
+{%load static%}
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Sign Up</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Login</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Sign Up</h3>
+                 <p class="lead">Let us give you more details about the special services you want. Please fill out the form below.
+					<br>We are happy to work with you</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="our-team">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <form class="our-team"  method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <fieldset>
+                                <div class="row">
+
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <i class="fa fa-user fa-2x"></i>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control fa-user"  name="username" placeholder="Username" required data-error="Please enter your username">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="form-group">
+                                            <i class="fa fa-lock fa-2x"></i>
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <input type="password" placeholder="Password" id="email" class="form-control fa-lock" name="password" required data-error="Please enter your Password">
+                                            <div class="help-block with-errors"></div>
+                                        </div>
+                                    </div>
+
+                                    {%if request.GET.next %}
+                                    <input type="hidden" name="next" value="{{request.GET.next}}">
+                                    {%endif%}
+
+
+                                     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 text-center">
+                                     </div>
+
+                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 text-center">
+                                        <button  type="submit" value="SEND" id="submit" class="btn btn-light btn-radius btn-brd grd2 btn-block">Login</button>
+                                     </div>
+
+                                    <div class="col-md-12">
+                                       <hr>
+                                        <h4 class="text-muted">Need An Account?<a class="ml-4" href="{%url 'register'%}"><b> Sign Up Now</b></a></h4>
+                                    </div>
+
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-10 col-md-10 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

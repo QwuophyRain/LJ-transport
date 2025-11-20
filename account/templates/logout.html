@@ -1,0 +1,67 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-login{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+
+{% block content %}
+{%load static%}
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Logged Out</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Logged Out</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>You Are Logged out</h3>
+                 <p class="lead">Login Again.
+					<br>We are happy to work with you</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="our-team">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                        <form class="our-team"  method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                       <hr>
+                                        <h4 class="text-muted">Wanna Log In Again?<a class="ml-4" href="{%url 'login'%}"><b>Login Again</b></a></h4>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

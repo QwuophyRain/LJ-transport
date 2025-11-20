@@ -1,0 +1,95 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-drivers{% endblock %}
+
+
+
+
+{% block content %}
+{%load static%}
+
+
+<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>ORDERS</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Your Orders</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="services" class="parallax section lb">
+        <div class="container">
+            <!--            Filtering             -->
+
+
+
+            <!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            <div class="section-title text-center">
+                <h3>Your Ordered List</h3><hr>
+                <p class="lead">{{setting.mission|safe}}</p>
+            </div><!-- end title -->
+
+            <div class="col-lg-12">
+					<div class="cart-page-inner">
+						<div class="table-responsive">
+							<table class="cart-table" id="cart-table" style="width: 90%">
+								<thead class="thead-dark">
+									<tr>
+										<th>Bus Name</th>
+										<th>User</th>
+										<th>Amount</th>
+										<th>Date</th>
+										<th>Order Code</th>
+									</tr>
+
+								</thead>
+								<tbody class="align-middle">
+
+									{%for rs in ordered%}
+									<tr>
+										<td>
+											<div class="img">
+												<a ><img src="{{rs.bus.image.url}}" alt="Image" style="height:100px; width:100px;"></a>
+												<p><a >{{rs.bus_name}}</a></p>
+											</div>
+										</td>
+										<td><strong>{{rs.user}}</strong></td>
+										<td><strong>GHC {{rs.amount}}</strong></td>
+										<td><strong>{{rs.create_at}}</strong></td>
+										<td><strong>{{rs.order.code}}</strong></td>
+									</tr>
+									{%endfor%}
+								</tbody>
+							</table>  <br><hr>
+						</div>
+					</div>
+				</div>
+<!--   pagination area         -->
+
+
+
+            <div class=" text-center">
+                <a data-scroll href="/make_bookings" class="btn btn-light btn-radius btn-brd">Book More</a>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

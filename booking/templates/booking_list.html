@@ -1,0 +1,102 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-drivers{% endblock %}
+
+
+
+
+{% block content %}
+{%load static%}
+
+
+<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Our Services</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Booking List</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="services" class="parallax section lb">
+        <div class="container">
+
+
+            <!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            <div class="section-title text-center">
+                <h3>Booking List</h3><hr>
+                <p class="lead">{{setting.mission|safe}}</p>
+            </div><!-- end title -->
+
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No.</th>
+                        <th>Bus Name</th>
+                        <th>Pickup Location</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                        <th>Deposit</th>
+                        <th>Cost</th>
+                        <th>Cancel</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    {%for rs in booking %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="details"><a ><strong>{{rs.bus.bus_name}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.pickup}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.start_date}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.end_date}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.security_deposit}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.amount}}</strong></a></td>
+                        <td><a href="/rooms/deletefromcart/{{rs.id}}"><img src="{% static 'images/delete.png' %}"
+																									 style="height:50px; width:50px"></a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+<!--   pagination area         -->
+
+            <hr class="hr1">
+            <div class="cart-content total">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>Cart Summary</h1><hr>
+                        <h2>Grand Total <span>GHC {{total}}</span></h2>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="text-center">
+                            <a data-scroll href="/booking/orderbus" class="btn btn-light btn-radius btn-brd">Place Order</a>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <hr>
+
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

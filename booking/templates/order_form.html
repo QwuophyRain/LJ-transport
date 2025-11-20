@@ -1,0 +1,135 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-booking{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>ORDER BUS</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Complete Your Order</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>ORDER BUS</h3>
+                 <p class="lead">Complete Your Order</p>
+            </div><!-- end title -->
+
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+					<form class="our-team" method="post" enctype="multipart/form-data">
+						{%csrf_token%}
+						<div class="row">
+
+							<div class="col-lg-12">
+								<div class="checkout-inner">
+									<div class="billing-address">
+										<div class="heading-title text-center">
+											<h2>Your Contact Details</h2>
+										</div>
+										<div class="row">
+											<div class="col-md-6">
+												<label>First Name</label>
+												<input class="form-control" type="text" name="first_name"
+													   value="{{user.first_name}}" maxlength="20"  placeholder="First Name">
+											</div>
+											<div class="col-md-6">
+												<label>Last Name</label>
+												<input class="form-control" type="text" name="last_name"
+													   value="{{user.last_name}}" maxlength="20"  placeholder="Last Name">
+											</div>
+											<div class="col-md-6">
+												<label>E-mail</label>
+												<input class="form-control" type="text" name="email"
+													   value="{{user.email}}" maxlength="20"  placeholder="Email Address">
+											</div>
+											<div class="col-md-6">
+												<label>Mobile No</label>
+												<input class="form-control" type="text" name="phone"
+													   value="{{profile.phone}}" maxlength="10"  placeholder="Mobile No.">
+											</div>
+											<div class="col-md-12">
+												<label>Address</label>
+												<input class="form-control" type="text" name="address"
+													   value="{{profile.address}}" maxlength="150"  placeholder="Address">
+											</div>
+
+											<div class="col-md-12">
+											   <hr> <button class="btn btn-light btn-radius btn-brd" type="submit">Complete Order</button>
+
+											</div><hr>
+
+
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</form>
+
+
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

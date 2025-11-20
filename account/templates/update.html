@@ -1,0 +1,174 @@
+{% extends 'homebase.html' %}
+
+{% block title %}profileUpdate{% endblock %}
+
+
+
+
+{% block content %}
+{%load static%}
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Update Profile</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Profile Update</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Sign Up</h3>
+                 <p class="lead">Let us give you more details about the special services you want. Please fill out the form below.
+					<br>We are happy to work with you</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="our-team">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form class="our-team"  method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Username</label>
+                                    <div class="form-group">
+                                        <input type="text" class="form-control" name="username" value="{{user.username}}" required data-error="Username">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Email</label>
+                                    <div class="form-group">
+                                        <input type="email" value="{{user.email}}"  class="form-control" name="email" required data-error="Email">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>First Name</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.first_name}}"  class="form-control" name="first_name" required data-error="First Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <label>Last Name</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.last_name}}"  class="form-control" name="last_name" required data-error="Last Name"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Phone</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.userprofile.phone}}"  class="form-control" name="phone" required data-error="Phone"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>ID Type</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.userprofile.iD_Type}}"  class="form-control" name="iD_Type" required data-error="ID Type"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>ID Number</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.userprofile.cardNumber}}"  class="form-control" name="cardNumber" required data-error="ID Number"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Address</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.userprofile.address}}"  class="form-control" name="address" required data-error="Address"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>City</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.userprofile.city}}"  class="form-control" name="city" required data-error="City"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <label>Country</label>
+                                    <div class="form-group">
+                                        <input type="text" value="{{user.userprofile.country}}"  class="form-control" name="country" required data-error="Country"><hr>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="submit-button text-center">
+                                        <button class="btn btn-light btn-radius btn-brd grd2 btn-block" type="submit">Update</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-10 col-md-10 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}
