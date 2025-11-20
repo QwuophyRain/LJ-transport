@@ -1,0 +1,31 @@
+{%load static%}
+
+<div class="slider-area">
+		<div class="slider-wrapper owl-carousel">
+			{%for rs in buses%}
+			<div class="slider-item home-one-slider-otem slider-item-four">
+
+				<div class="container">
+					<div class="row">
+						<div class="slider-content-area">
+								<img src="{{rs.image.url}}" alt="">
+							<div class="slide-text">
+								<h1 class="homepage-three-title">Outstanding <span>{{rs.bus_name}}</span> Vehicle</h1>
+								<h2>{{setting.company}} <br>Get in touch with us for special services</h2>
+								<div class="slider-content-btn">
+									{%if user.is_authenticated%}
+									<a class="button btn btn-light btn-radius btn-brd" href="/logout">Logout</a>
+									{%else%}
+									<a class="button btn btn-light btn-radius btn-brd" href="/login">Login</a>
+									<a class="button btn btn-light btn-radius btn-brd" href="/register">Create Account</a>
+									{%endif%}
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{%endfor%}
+
+		</div>
+	</div>

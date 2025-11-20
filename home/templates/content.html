@@ -1,0 +1,126 @@
+{%load static%}
+{% load embed_video_tags %}
+     <div id="about" class="section wb">
+        <div class="container">
+             <div id="message"></div>
+            <!--  display message on form    -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags}}" role="alert">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="message-box">
+                        <h4>About Us</h4>
+                        <h2>Welcome to {{setting.company}}</h2>
+                        <p class="lead">{{setting.description|safe}}</p>
+
+                        <p> {{setting.sample_about|safe}} </p>
+
+                        <a href="/about" class="btn btn-light btn-radius btn-brd grd1">Learn More</a>
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+
+                <div class="col-md-6">
+                    <div class="post-media wow fadeIn">
+                        <a data-scroll  class="btn btn-light btn-radius btn-brd">
+                        {%video setting.about_video '600x400'%}</a>
+                    </div><!-- end media -->
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+            <hr class="hr1">
+
+            <div class="row">
+                {%for rs in services%}
+				<div class="col-md-6">
+                    <div class="post-media wow fadeIn">
+                        <img src="{{rs.image.url}}" alt="" class="img-responsive img-rounded">
+                    </div><!-- end media -->
+                </div><!-- end col -->
+
+                <div class="col-md-6">
+                    <div class="message-box">
+                        <h4>Our New Service</h4>
+                        <h2>{{rs.title}}</h2>
+                        <p class="lead">{{rs.detail|safe}}</p>
+
+                        <a href="/" class="btn btn-light btn-radius btn-brd grd1">Learn More</a>
+                    </div><!-- end messagebox -->
+                </div><!-- end col -->
+                {%endfor%}
+
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+	<div class="parallax section parallax-off" data-stellar-background-ratio="0.9" style="background-image:url('{%static ''%}uploads/parallax_04.jpg');">
+        <div class="container">
+            <div class="row text-center stat-wrap">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <span data-scroll class="global-radius icon_wrap effect-1"><i class="fa fa-car"></i></span>
+                    <p class="stat_count">{{count_vehicles}}</p>
+                    <h3>Available Vehicles</h3>
+                </div><!-- end col -->
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <span data-scroll class="global-radius icon_wrap effect-1"><i class="fa fa-ticket"></i></span>
+                    <p class="stat_count">{{count_orders}}</p>
+                    <h3>Orders</h3>
+                </div><!-- end col -->
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <span data-scroll class="global-radius icon_wrap effect-1"><i class="flaticon-customer-service"></i></span>
+                    <p class="stat_count">{{count_drivers}}</p>
+                    <h3>Drivers</h3>
+                </div><!-- end col -->
+
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <span data-scroll class="global-radius icon_wrap effect-1"><i class="flaticon-happy"></i></span>
+                    <p class="stat_count">{{count_bookings}}</p>
+                    <h3>Customers</h3>
+                </div><!-- end col -->
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+    <div id="services" class="parallax section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Our Vehicles</h3>
+                <p class="lead">{{setting.vision|safe}}</p>
+            </div><!-- end title -->
+
+            <div class="owl-services owl-carousel owl-theme">
+                {%for rs in buses%}
+                <div class="service-widget">
+                    <div class="post-media wow fadeIn">
+                        <a href="{{rs.image.url}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <img src="{{rs.image.url}}" alt="" class="img-responsive img-rounded" style="height: 300px">
+                    </div>
+					<div class="service-dit">
+						<h3>{{rs.bus_name}}</h3>
+<!--						<p>{{rs.description|safe}}</p>-->
+					</div>
+                    <div class="text-center">
+                        <a data-scroll href="/book_this/{{rs.id}}" class="btn btn-light btn-radius btn-brd">Book</a>
+                    </div>
+                </div>
+                <!-- end service -->
+                {%endfor%}
+                <div class="service-widget">
+
+
+                </div>
+                <!-- end service -->
+            </div><!-- end row -->
+
+            <hr class="hr1">
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+

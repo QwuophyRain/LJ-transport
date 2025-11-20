@@ -1,0 +1,129 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-drivers{% endblock %}
+
+
+
+
+{% block content %}
+{%load static%}
+
+
+<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Our Drivers</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Our Drivers</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="services" class="parallax section lb">
+        <div class="container">
+             <!--            Filtering             -->
+
+            <div class="row">
+				<div class="col-lg-12">
+					{% load mydrivers_extras %}
+					<form class="our-team"  method="get">
+						<h3>Search Drivers</h3><hr>
+						<div class="row">
+                            <div class="col-md-3 mb-3">
+                            </div>
+
+							<div class="col-md-6 mb-3">
+
+                                <label>Driver License</label>
+                                <input class="form-control" type="text" placeholder="Driver's License" name="license_ID">
+
+							</div>
+
+
+						</div><hr>
+
+                            <div class="col-md-6 mb-3">
+                                <input class="btn btn-light" type="submit" value="Filter/Search">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <a href="{% url 'export_excel' %}" class="btn btn-light">Export Excel</a>
+                            </div>
+					</form>
+
+				</div>
+			</div><br><hr>
+
+
+            <!--  display message on form    -->
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ message.tags}}" role="alert">
+                            {{message}}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+
+            <div class="section-title text-center">
+                <h3>Our Drivers</h3>
+                <p class="lead">{{setting.mission|safe}}</p>
+            </div><!-- end title -->
+
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>No.</th>
+                        <th>Photo</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>National ID</th>
+                        <th>License Category</th>
+                        <th>License ID</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody class="align-middle">
+                    {%for rs in driver_page_obj %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td class="details"><a><img src="{{rs.photo.url}}" alt="Image" style="height: 50px"></a></td>
+                        <td class="details"><a ><strong>{{rs.first_name}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.last_name}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.national_id}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.license_category}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.license_ID}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.email}}</strong></a></td>
+                        <td class="details"><a ><strong>{{rs.phone_number}}</strong></a></td>
+
+                        <td><a href="{% url 'update_driver' rs.id %}"><img src="{% static 'images/edit.png' %}"
+                                                                         style="height:50px; width:50px"></a></td>
+                        <td><a href="{% url 'delete_driver' rs.id %}"><img src="{% static 'images/delete.png' %}"
+                                                                           style="height:50px; width:50px"></a></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+<!--   pagination area         -->
+
+            <hr class="hr1">
+
+            <div class="text-center">
+                <a data-scroll href="/new_driver" class="btn btn-light btn-radius btn-brd">Add New Driver</a>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

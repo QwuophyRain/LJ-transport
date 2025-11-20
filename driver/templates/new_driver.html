@@ -1,0 +1,179 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-add driver{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Driver</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Add New Driver</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Add Driver</h3>
+                 <p class="lead">Add New
+					<br>Driver Details</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+                    <div class="">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form class="our-team" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>First Name</label>
+                                        <input type="text" class="form-control"  name="first_name" placeholder="First Name"  required data-error="Please enter First Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Last Name</label>
+                                        <input type="text" class="form-control"  name="last_name" placeholder="Last Name"  required data-error="Please enter Last Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>National ID</label>
+                                        <input type="text" class="form-control"  name="national_id" placeholder="National ID"  required data-error="Please enter National ID No.">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                  <label>License Category</label>
+                                    <div class="form-group">
+                                        <select class="custom-select" name="license_category">
+                                            <option selected>----------------------------------------------------</option>
+                                            <option>AM</option>
+                                            <option>A1</option>
+                                            <option>A2</option>
+                                            <option>A</option>
+                                            <option>B</option>
+                                            <option>BE</option>
+                                            <option>W</option>
+                                            <option>C</option>
+                                            <option>C1</option>
+                                            <option>C1E</option>
+                                            <option>D</option>
+                                            <option>DE</option>
+                                            <option>D1</option>
+                                            <option>D1E</option>
+                                            <option>Other</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>License ID</label>
+                                        <input type="text" class="form-control"  name="license_ID" placeholder="License ID"  required data-error="Please enter License ID">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input type="text" class="form-control"  name="email" placeholder="Email"  required data-error="Please enter Email">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control"  name="phone_number" placeholder="Phone"  required data-error="Please enter Phone number">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>Profile Image</label>
+                                    <input class="form-control" type="file" name="photo" />
+                                   <div class="help-block with-errors"></div>
+                               </div>
+                               <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <textarea class="form-control"  placeholder="Address/Location" name="address"  data-error="Please type address or location" ></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="submit-button text-center">
+                                        <button class="btn btn-light" id="submit" type="submit">Save Driver</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}
