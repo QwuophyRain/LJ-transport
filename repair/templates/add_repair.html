@@ -1,0 +1,155 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-report issue{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Repairs</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Report Issue</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Report an Issue</h3>
+                 <p class="lead">Issue Details </p>
+            </div><!-- end title -->
+
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+                    <div class="">
+
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form class="our-team" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Bus Name </label>
+                                        <input type="text" class="form-control"  name="bus_name" placeholder="Vehicle Name"  required data-error="Please search vehicle">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Fullname </label>
+                                        <input type="text" class="form-control"  name="fullname" placeholder="Reporter's Name"  required data-error="Please enter Reporter's Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label>Report Date</label>
+                                    <input class="form-control" type="date" name="report_date"
+                                           value="2023-01-01" placeholder="Report Date" data-error="Please select Report Date">
+                                   <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Distance in km</label>
+                                        <input type="text" class="form-control"  name="mileage" placeholder="Distance"  required data-error="Please enter Distance">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Registration Plate</label>
+                                        <input type="text" class="form-control"  name="registration_plate" placeholder="Vehicle Number"  required data-error="Please enter Vehicle Number">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-12 mb-3">
+                                    <div class="form-group">
+                                        <label>Type Issue here</label>
+                                        <textarea type="text" class="form-control"  name="issue" placeholder="Issue Details"  required data-error="Please type issue details here"></textarea>
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="submit-button text-center">
+                                        <button class="btn btn-light" id="submit" type="submit">Add Report</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

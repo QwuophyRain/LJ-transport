@@ -1,0 +1,155 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-update{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Repair Updates</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Reported Issues</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Update</h3>
+                <p class="lead">Update Details</p><hr>
+
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+                    <div class="">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+
+                        <form class="our-team" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Vehicle Name </label>
+                                        <input type="text" class="form-control"  name="vehicle" placeholder="Vehicle Name" value="{{repairs.vehicle}}" required data-error="Vehicle Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Reported By </label>
+                                        <input type="text" class="form-control"  name="fullname" placeholder="Reported By" value="{{repairs.fullname}}"  required data-error="Please enter Pickup Destination">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Report Date </label>
+                                        <input type="date" class="form-control"  name="report_date" placeholder="Report Date: yyyy-mm-dd" value="{{reparis.report_date}}" required data-error="Please Report Date">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Mileage in km</label>
+                                        <input type="text" class="form-control"  name="mileage" placeholder="Mileage" value="{{repairs.mileage}}"  required data-error="Please enter Mileage">
+                                        <div  class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Registraion Plate</label>
+                                        <input type="text" class="form-control"  name="registration_plate" placeholder="Registration Plate" value="{{repairs.registration_plate}}"  required data-error="Please edit Registration Plate">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Reported Issue </label>
+                                        <input type="text" class="form-control"  name="issue" placeholder="Reported Issue" value="{{repairs.issue}}" required data-error="Please Enter Issues">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="submit-button text-center">
+                                        <button class="btn btn-light" id="submit" type="submit">Update</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}
