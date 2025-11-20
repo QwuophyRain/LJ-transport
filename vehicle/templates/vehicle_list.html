@@ -1,0 +1,66 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-ourservices{% endblock %}
+
+
+
+
+{% block content %}
+{%load static%}
+
+
+<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Our Services</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Our Buses</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div id="services" class="parallax section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Our Buses</h3>
+                <p class="lead">{{setting.mission|safe}}</p>
+            </div><!-- end title -->
+
+            <div class="owl-services owl-carousel owl-theme">
+                {%for rs in vehicles%}
+                <div class="service-widget">
+                    <div class="post-media wow fadeIn">
+                        <a href="{{rs.image.url}}" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+                        <img src="{{rs.image.url}}" alt="" class="img-responsive img-rounded" style="height: 300px">
+                    </div>
+					<div class="service-dit">
+						<h3>{{rs.bus_name}}</h3>
+						<p>{{rs.bus_type}}</p>
+					</div>
+                    <div class="text-center">
+                        <a data-scroll href="/book_this/{{rs.id}}" class="btn btn-light btn-radius btn-brd">Book This</a>
+                    </div>
+                </div>
+                <!-- end service -->
+                {%endfor%}
+
+
+            </div><!-- end row -->
+
+            <hr class="hr1">
+
+            <div class="text-center">
+                <a data-scroll href="/new_vehicle" class="btn btn-light btn-radius btn-brd">Add New Vehicle</a>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}

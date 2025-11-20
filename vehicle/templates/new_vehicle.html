@@ -1,0 +1,233 @@
+{% extends 'homebase.html' %}
+
+{% block title %}{{setting.title}}-add vehicle{% endblock %}
+{% block keywords %}{{setting.keywords}}{% endblock %}
+{% block description %}{{setting.description}}{% endblock %}
+
+
+{% block content %}
+{%load static%}
+
+	<div class="banner-area banner-bg-1">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="banner">
+						<h2>Driver</h2>
+						<ul class="page-title-link">
+							<li><a href="/">Home</a></li>
+							<li><a href="#">Add New Vehicle</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Add Bus</h3>
+                 <p class="lead">Add New
+					<br>Vehicle Details</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+                    <div class="">
+                        <div id="message"></div>
+                                <!--  display message on form    -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form class="our-team" method="post" enctype="multipart/form-data">
+                            {%csrf_token%}
+                            <fieldset>
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Bus Name</label>
+                                        <input type="text" class="form-control"  name="bus_name" placeholder="Bus Name"  required data-error="Please enter Bus Name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+
+                                        <label>Bus Type</label>
+                                        <select class="form-control" name="bus_type">
+                                            <option selected>Double-decker</option>
+                                            <option>Coach</option>
+                                            <option>School Bus</option>
+                                            <option>Shuttle</option>
+                                            <option>Minibus</option>
+                                            <option>MiniCoach</option>
+                                            <option>Single-decker</option>
+                                            <option>Double-decker</option>
+                                            <option>Low-floor</option>
+                                            <option>Other</option>
+                                        </select>
+
+                                </div>
+
+                                 <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Color</label>
+                                        <input type="text" class="form-control"  name="color" placeholder="Please enter color"  required data-error="Please enter Color">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                 <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Capacity</label>
+                                        <input type="number" class="form-control"  name="capacity" placeholder="Capacity"  required min="0">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+                                 <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Cost Per Day</label>
+                                        <input type="number" class="form-control"  name="cost_per_day" placeholder="Cost Per Kilometer" min="0"  required >
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Registration Plate</label>
+                                        <input type="text" class="form-control"  name="registration_plate" placeholder="Registration Plate"  required data-error="Please enter Registration Plate">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+
+                                     <label>Bus Status</label>
+                                    <select class="form-control" name="bus_status">
+                                        <option selected>----------------------------------------------</option>
+                                        <option>Healthy</option>
+                                        <option>Needs Servicing</option>
+                                        <option>Needs Repairs</option>
+                                        <option>Other</option>
+                                    </select>
+
+                                </div>
+
+                                <div class="col-md-4 mb-3">
+
+                                        <label>Fuel Type</label>
+                                        <select class="form-control" name="fuel_type">
+                                            <option selected>------------------------------------------------</option>
+                                            <option>Petrol</option>
+                                            <option>LPG</option>
+                                            <option>Propane</option>
+                                            <option>Gasoline</option>
+                                            <option>Ethanol</option>
+                                            <option>CNG</option>
+                                            <option>Hybrid</option>
+                                            <option>Biodiesel</option>
+                                            <option>Fuel Oil</option>
+                                            <option>Electricity</option>
+                                            <option>Other</option>
+                                        </select>
+
+                                </div>
+
+                                 <div class="col-md-4 mb-3">
+                                    <div class="form-group">
+                                        <label>Speed (km/h) </label>
+                                        <input type="text" class="form-control"  name="speed" placeholder="in km/hr"  required data-error="Please enter speed limit">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-md-4 mb-3">
+                                    <label>Bus Image</label>
+                                    <input class="form-control" type="file" name="image" />
+                                   <div class="help-block with-errors"></div>
+                               </div>
+
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label>Insurance</label>
+                                        <input class="form-control" type="file" name="insurance_status" />
+                                       <div class="help-block with-errors"></div>
+                                   </div>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="submit-button text-center">
+                                        <button class="btn btn-light" id="submit" type="submit">Save Details</button>
+                                        <div id="msgSubmit" class="h3 text-center hidden"></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            </fieldset>
+                        </form>
+
+                    </div>
+                </div><!-- end col -->
+            </div><!-- end row -->
+
+			<div class="row">
+				<div class="col-md-offset-1 col-sm-12 col-md-12 col-sm-offset-1 pd-add">
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-location2"></i>
+						</div>
+						<h3>Headquarters</h3>
+						<p>{{setting.address|safe}}
+							<br> Accra - Ghana</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="fa fa-envelope" aria-hidden="true"></i>
+						</div>
+						<h3>Email Us</h3>
+						<p>{{setting.email}}
+							<br>{{setting.email}}</p>
+					</div>
+					<div class="address-item">
+						<div class="address-icon">
+							<i class="icon icon-headphones"></i>
+						</div>
+						<h3>Call Us</h3>
+						<p>+233
+							<br>{{setting.phone}}/p>
+					</div>
+				</div>
+			</div><!-- end row -->
+
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+
+{% endblock %}
+{% block foot %}{% include 'footer.html' %}{% endblock %}
